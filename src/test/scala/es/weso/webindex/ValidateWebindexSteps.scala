@@ -14,7 +14,7 @@ class ValidateWebindexSteps extends ScalaDsl with EN with ShouldMatchers {
   
   val vars = MutableMap[String, String]()
 
-  Given("""^I want to check "([^"]*)" at "([^"]*)" in "([^"]*)"$"""){ (property:String, country:String, year:String) =>
+  Given("""^I want to check "([^"]*)" in "([^"]*)" in "([^"]*)"$"""){ (property:String, country:String, year:String) =>
     vars.clear
     vars += "query" -> PROPERTY_QUERY
     vars += "property" -> property
@@ -22,7 +22,7 @@ class ValidateWebindexSteps extends ScalaDsl with EN with ShouldMatchers {
     vars += "year" -> year
   }
   
-  Given("""^I want to validate indicator "([^"]*)" of type "([^"]*)" at "([^"]*)" in "([^"]*)"$"""){ (indicator:String, iType:String, country:String, year:String) =>
+  Given("""^I want to validate indicator "([^"]*)" of type "([^"]*)" in "([^"]*)" in "([^"]*)"$"""){ (indicator:String, iType:String, country:String, year:String) =>
   	vars.clear
   	vars += "query" -> INDICATOR_QUERY
   	vars += "indicator" -> indicator
