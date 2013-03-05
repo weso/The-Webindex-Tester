@@ -14,3 +14,18 @@ Just Fill your .feature file (src/resources/es/weso/webindex/) and execute from 
 ```
 sbt cucumber
 ```
+
+# Show me some examples!
+The next examples accepts the full country name (i.e. **Argentina**), the ISO 2-alpha code (i.e. **AR**) or the ISO 3-alpha code (i.e. **ARG**):
+
+ - >      Given I want to check "Civil liberties" in "Kazakhstan" in "2011"
+   >      When I make the SPARQL query
+   >      Then the value should be "-1.264743268725671"
+
+ - >      Given I want to validate indicator "FHB" of type "Normalised" in "Burkina Faso" in "2011"
+   >      When I make the SPARQL query
+   >      Then the value should be "-0.04979304207581375"
+
+ - >      Given I want to check the ranking for "ARG" in "2011"
+   >      When I make the SPARQL query
+   >      Then the value should be "38"
