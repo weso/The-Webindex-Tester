@@ -1,4 +1,4 @@
-package es.weso
+package es.weso.sparql
 
 object QueryBuilderUtils {
 

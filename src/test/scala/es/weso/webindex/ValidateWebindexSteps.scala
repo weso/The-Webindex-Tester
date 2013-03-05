@@ -10,9 +10,12 @@ import org.scalatest.selenium._
 import org.openqa.selenium.WebDriver
 import org.openqa.selenium.htmlunit.HtmlUnitDriver
 import org.openqa.selenium.By
-import es.weso._
-import es.weso.ObservationQueryBuilder._
-import es.weso.ObservationQueryBuilder._
+import es.weso.sparql.RankQueryBuilder
+import es.weso.sparql.ObservationQueryBuilder
+import es.weso.sparql.RankQueryBuilder
+import es.weso.sparql.RankScoreQueryBuilder
+import es.weso.web.RankWebBuilder
+import es.weso.web.RankScoreWebBuilder
 
 class ValidateWebindexSteps extends ScalaDsl with EN with ShouldMatchers with WebBrowser{
 
@@ -113,8 +116,21 @@ class ValidateWebindexSteps extends ScalaDsl with EN with ShouldMatchers with We
   }
   
   When("""^I go to the page$"""){ () =>
-    go to ("http://thewebindex.org/data/all/country/ARG")
-    result = ("",webDriver.findElement(By.xpath("//*[@id=\"webindex\"]/tbody/tr[1]/td[3]")).getText().toDouble)
+    val rankingQueryPattern = (RANKING_QUERY+"_.*").r;
+    val rankingScoreQueryPattern = (RANK_SCORE_QUERY+"_.*").r;
+    result = vars("query") match {
+      case RANKING_QUERY_ISO3 =>
+        RankWebBuilder.checkRankISO3(vars("iso_code_3"), vars("year"))
+      case RANK_SCORE_QUERY_ISO3 =>
+        RankScoreWebBuilder.checkRankScoreISO3(vars("iso_code_3"), vars("year"))
+      case rankingQueryPattern(_) =>
+        throw new Exception("\"I go to the page\" only accepts iso_code_3.")
+      case rankingScoreQueryPattern(_) =>
+        throw new Exception("\"I go to the page\" only accepts iso_code_3.")
+      case _ =>
+        throw new Exception("This Query is not yet implemented with \"When I go to the page\"")
+        
+    }
   }
   
   Then("""^the value should be "([^"]*)"$"""){ (arg0:String) =>

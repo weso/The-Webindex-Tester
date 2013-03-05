@@ -17,11 +17,12 @@ object WebindexvalidatorBuild extends Build {
       version := "0.10-SNAPSHOT",
       scalaVersion := scalaV,
       libraryDependencies += "junit" % "junit" % junitV,
-      libraryDependencies += "org.scalatest" %% "scalatest" % scalatestV % "test",
-      libraryDependencies += "info.cukes" % "cucumber-jvm" % cucumberV % "test",
-      libraryDependencies += "info.cukes" % "cucumber-core" % cucumberV % "test",
-      libraryDependencies += "info.cukes" % "cucumber-scala" % cucumberV % "test",
-      libraryDependencies += "info.cukes" % "cucumber-junit" % cucumberV % "test",
+      //Due to
+      libraryDependencies += "org.scalatest" %% "scalatest" % scalatestV,
+      libraryDependencies += "info.cukes" % "cucumber-jvm" % cucumberV,
+      libraryDependencies += "info.cukes" % "cucumber-core" % cucumberV,
+      libraryDependencies += "info.cukes" % "cucumber-scala" % cucumberV,
+      libraryDependencies += "info.cukes" % "cucumber-junit" % cucumberV,
       
       libraryDependencies += "org.seleniumhq.selenium" % "selenium-java" % "2.31.0",
         

@@ -1,4 +1,4 @@
-package es.weso
+package es.weso.sparql
 
 import com.hp.hpl.jena.query.QueryFactory
 import com.hp.hpl.jena.query.Query
